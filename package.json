@@ -1,0 +1,21 @@
+{
+  "name": "vamos-juntas-api",
+  "version": "1.0.0",
+  "description": "This is a project to have API for VamosJuntas",
+  "engines": {
+    "node": "4.3.1"
+  },
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VamosJuntas/back-end.git"
+  },
+  "author": "vamosJuntas Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VamosJuntas/back-end/issues"
+  },
+  "homepage": "https://github.com/VamosJuntas/back-end"
+}
