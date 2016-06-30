@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a project to have API for VamosJuntas",
   "engines": {
-    "node": "4.3.1"
+    "node": "5.3.0"
   },
   "main": "index.js",
   "scripts": {},
