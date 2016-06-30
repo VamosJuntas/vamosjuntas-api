@@ -6,8 +6,7 @@
     "node": "4.3.1"
   },
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/VamosJuntas/back-end.git"
@@ -17,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/VamosJuntas/back-end/issues"
   },
-  "homepage": "https://github.com/VamosJuntas/back-end"
+  "homepage": "https://github.com/VamosJuntas/back-end",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "mocha": "^2.5.3"
+  }
 }
