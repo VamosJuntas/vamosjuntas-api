@@ -1,4 +1,3 @@
-import httpMocks from 'node-mocks-http';
 import sinon from 'sinon';
 import validator from '../../../src/middlewares/request_validator';
 
