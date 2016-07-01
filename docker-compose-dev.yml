@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  test:
+    build:
+      dockerfile: "infrastructure/docker/Dockerfile_nodejs_dev"
+      context: .
+    volumes:
+      - "./:/usr/app"
+    command: [ "npm", "test" ]
