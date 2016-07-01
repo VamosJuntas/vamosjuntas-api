@@ -3,10 +3,10 @@ import validator from '../../../src/middlewares/request_validator';
 
 describe('middlewares:request_validator', () => {
   const SCHEMA = {
-    "type": "object",
-    "properties": {
-      "foo": {
-        "type": "string"
+    type: 'object',
+    properties: {
+      foo: {
+        type: 'string'
       }
     }
   };
@@ -17,7 +17,7 @@ describe('middlewares:request_validator', () => {
     beforeEach(() => {
       req = {
         params: {
-          'foo': 123
+          foo: 123
         }
       };
 
@@ -45,7 +45,7 @@ describe('middlewares:request_validator', () => {
     beforeEach(() => {
       req = {
         params: {
-          'foo': 'bar'
+          foo: 'bar'
         }
       };
 

@@ -11,6 +11,6 @@ export default function(schema) {
         message: 'Bad Request'
       }
     });
-  }
+  };
 }
 

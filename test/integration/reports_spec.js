@@ -27,7 +27,7 @@ describe('POST /reports', () => {
         .post('/reports')
         .send({
           geolocation: [1, 2],
-          category: 'lorem',
+          category: 'lorem'
         })
         .expect(400, done);
     });

@@ -29,6 +29,6 @@
     "camelcase": 1,
     "new-cap": 1,
     "consistent-this": [1, "_this"],
-    "func-names": 1
+    "func-names": 0
   }
 }
