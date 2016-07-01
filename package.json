@@ -1,9 +1,9 @@
 {
-  "name": "vamos-juntas-api",
+  "name": "vamosjuntas-api",
   "version": "1.0.0",
   "description": "This is a project to have API for VamosJuntas",
   "engines": {
-    "node": "5.3.0"
+    "node": "5.11.1"
   },
   "main": "index.js",
   "scripts": {
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/VamosJuntas/back-end.git"
+    "url": "https://github.com/VamosJuntas/vamosjuntas-api.git"
   },
   "author": "vamosJuntas Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/VamosJuntas/back-end/issues"
+    "url": "https://github.com/VamosJuntas/vamosjuntas-api/issues"
   },
-  "homepage": "https://github.com/VamosJuntas/back-end",
+  "homepage": "https://github.com/VamosJuntas/vamosjuntas-api",
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
