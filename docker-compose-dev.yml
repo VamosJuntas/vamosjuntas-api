@@ -3,8 +3,17 @@ version: "2"
 services:
   test:
     build:
-      dockerfile: "infrastructure/docker/Dockerfile_nodejs_dev"
+      dockerfile: infrastructure/docker/Dockerfile_nodejs_dev
       context: .
     volumes:
-      - "./:/usr/app"
-    command: [ "npm", "test" ]
+      - ./:/usr/app
+    links:
+      - db
+    depends_on:
+      - db
+    command: [ npm, test ]
+
+  db:
+    build:
+      dockerfile: Infrastructure/docker/Dockerfile_mongodb_dev
+      context: .
