@@ -1,7 +1,11 @@
 import restify from 'restify';
+import config from './config';
+import mongoose from './libs/mongoose';
 import requestValidator from './middlewares/request_validator';
 import reportsController from './controllers/reports';
 import reportSchemas from './controllers/schemas/reports';
+
+dbConnect();
 
 let app = restify.createServer({
   name: 'VamosJuntas'
@@ -19,6 +23,16 @@ app.post(
   requestValidator(reportSchemas.create),
   reportsController.create
 );
+
+function dbConnect() {
+  const DB = `${config.mongoose.db}`;
+
+  mongoose.connect(DB, (err) => {
+    if (err) {
+      console.log('mongodb connection error', err);
+    }
+  });
+}
 
 export default app;
 
