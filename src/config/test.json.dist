@@ -1,6 +1,0 @@
-{
-  "mongoose": {
-    "db": "mongodb://db/vamosjuntas"
-  }
-}
-

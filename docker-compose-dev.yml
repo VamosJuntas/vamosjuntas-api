@@ -11,6 +11,8 @@ services:
       - db
     depends_on:
       - db
+    environment:
+      - VAMOSJUNTAS_DATABASE_URL=mongodb://db/vamosjuntas
     command: [ npm, test ]
 
   db:
