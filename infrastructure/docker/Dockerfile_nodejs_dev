@@ -1,13 +1,15 @@
 FROM node:5.11.1
 
-EXPOSE 3000
+ADD package.json /tmp/package.json
+RUN cd /tmp && npm install
+RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
 
-RUN mkdir -p /usr/app
+VOLUME /usr/app/node_modules
+
 WORKDIR /usr/app
+ADD . /usr/app
 
-COPY package.json package.json
-RUN npm install
-COPY . /usr/app
+EXPOSE 3000
 
 CMD [ "npm", "start" ]
 
