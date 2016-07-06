@@ -34,14 +34,7 @@ ReportSchema.statics = {
       }
     };
 
-    return this.find(QUERY).execAsync()
-      .then((reports) => {
-        if (reports) {
-          return reports;
-        }
-
-        return Promise.reject(new Error('Reports not found'));
-      });
+    return this.find(QUERY).execAsync();
   }
 };
 
