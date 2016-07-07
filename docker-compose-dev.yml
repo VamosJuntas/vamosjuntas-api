@@ -15,5 +15,5 @@ services:
 
   db:
     build:
-      dockerfile: Infrastructure/docker/Dockerfile_mongodb_dev
+      dockerfile: infrastructure/docker/Dockerfile_mongodb_dev
       context: .
