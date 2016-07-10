@@ -1,6 +1,19 @@
 version: "2"
 
 services:
+  web:
+    build:
+      dockerfile: infrastructure/docker/Dockerfile_nodejs_dev
+      context: .
+    volumes:
+      - ./:/usr/app
+    links:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      - VAMOSJUNTAS_DATABASE_URL=mongodb://db/vamosjuntas
+
   test:
     build:
       dockerfile: infrastructure/docker/Dockerfile_nodejs_dev

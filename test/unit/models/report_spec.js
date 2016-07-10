@@ -84,21 +84,23 @@ describe('models:report', () => {
     });
 
     it('should set $near query type', () => {
+      const METER_PER_DEGREES = 0.00008983111749910169;
       Report.findByGeolocation([90, 180]);
       expect(Report.find).to.be.calledWith({
         geolocation: {
           $near: [90, 180],
-          $maxDistance: 10
+          $maxDistance: METER_PER_DEGREES
         }
       });
     });
 
     it('should set $maxDistance query type if passed', () => {
+      const METER_PER_DEGREES = 0.0026949335249730508;
       Report.findByGeolocation([90, 180], 300);
       expect(Report.find).to.be.calledWith({
         geolocation: {
           $near: [90, 180],
-          $maxDistance: 300
+          $maxDistance: METER_PER_DEGREES
         }
       });
     });
