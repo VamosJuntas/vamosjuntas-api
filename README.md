@@ -92,7 +92,19 @@ eval $(docker-machine env)
 docker-compose -f docker-compose-dev.yml build db
 
 docker-compose -f docker-compose-dev.yml build test
+
+OR
+
+docker-compose -f docker-compose-dev.yml build web
 ```
+
+### Start API
+
+```
+docker-compose -f docker-compose-dev.yml up web
+```
+
+It will expose the 3000 port in the docker machine. You can check it by typing `docker ps`.
 
 ### Tests
 
