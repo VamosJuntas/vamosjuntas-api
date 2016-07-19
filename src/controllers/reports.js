@@ -1,6 +1,10 @@
 import HttpStatus from 'http-status-codes';
 import Report from '../models/report';
 
+function show(req, res, next) {
+
+}
+
 function create(req, res, next) {
   let report = new Report(req.body);
   report.saveAsync()
@@ -12,5 +16,5 @@ function create(req, res, next) {
     });
 }
 
-export default { create };
+export default { show, create };
 

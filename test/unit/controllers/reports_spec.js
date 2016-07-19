@@ -84,4 +84,22 @@ describe('controllers:reports', () => {
       });
     });
   });
+
+  describe('.show', () => {
+    context('found', () => {
+      let req, res, findByGeolocationPromise;
+
+      beforeEach(() => {
+        sinon.spy(Report, 'findByGeolocation');
+      });
+
+      it('should call Report.findByGeolocation', () => {
+        expect(Report.findByGeolocation).to.be.called;
+      });
+    });
+
+    context('not found', () => {
+      let req, res, findByGeolocationPromise;
+    });
+  });
 });
