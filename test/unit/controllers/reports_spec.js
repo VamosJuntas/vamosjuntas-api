@@ -87,19 +87,28 @@ describe('controllers:reports', () => {
 
   describe('.show', () => {
     context('found', () => {
-      let req, res, findByGeolocationPromise;
+      let req, res, nextSpy, findByGeolocationPromise;
 
       beforeEach(() => {
         sinon.spy(Report, 'findByGeolocation');
+
+        req = {
+          params: {
+            geolocation: '-30.057389,-51.174544'
+          }
+        };
+
+        nextSpy = sinon.spy();
+      });
+
+      afterEach(() => {
+        Report.findByGeolocation.restore();
       });
 
       it('should call Report.findByGeolocation', () => {
+        controller.show(req, {}, nextSpy);
         expect(Report.findByGeolocation).to.be.called;
       });
-    });
-
-    context('not found', () => {
-      let req, res, findByGeolocationPromise;
     });
   });
 });

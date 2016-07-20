@@ -3,11 +3,25 @@ import app from '../../../src/app';
 describe('/reports', () => {
   describe('GET /reports/:geolocation', () => {
     context('found', () => {
-    
+      it('should responde with 200', (done) => {
+        request(app)
+          .get('/reports/-30.057389,-51.174544')
+          .expect(200, done);
+      });
     });
 
     context('not found', () => {
-    
+      it('should responde with 200', (done) => {
+        request(app)
+          .get('/reports/-90,-180')
+          .expect(200, done);
+      });
+
+      it('should render an empty array', (done) => {
+        request(app)
+          .get('/reports/-30.057389,-51.174544')
+          .expect([], done);
+      });
     });
   });
 
