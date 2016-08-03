@@ -33,7 +33,7 @@ describe('middlewares:request_validator', () => {
       expect(nextSpy).to.not.have.been.called;
       expect(res.send).to.have.been.calledWith(400, {
         error: {
-          message: 'Bad Request'
+          message: 'The request could not be understood by the server due to malformed syntax'
         }
       });
     });
@@ -63,4 +63,3 @@ describe('middlewares:request_validator', () => {
     });
   });
 });
-
