@@ -89,7 +89,7 @@ docker-machine start
 
 docker-machine env
 
-eval (docker-machine env)
+eval $(docker-machine env)
 ```
 
 ###  Build images
