@@ -9,7 +9,7 @@ function create(request, response, next) {
   var report = Report.create(params).then(function() {
     response.send(201)
   }).catch(function() {
-    console.log("nao criou")
+    response.send(500)
   });
   return next()
 }

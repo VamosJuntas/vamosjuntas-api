@@ -31,6 +31,33 @@ describe('Reports Controller', function() {
     success.should.be.fulfilled.then(function () {
         assert(mock.response.send.calledWith(201), 'response.send was never called')
         assert(mock.next.calledOnce, 'next was never called')
+        Report.create.restore()
+    }).should.notify(done)
+  })
+
+  it('should return failure when can not create a new report', function(done) {
+    var mock = {
+      next: sinon.spy(),
+      response: { send: sinon.spy() },
+      request: {
+        params: {
+          geolocation: {
+            latitude: 10,
+            longitude: 20
+          },
+          category: "Roubo",
+          date: "10/10/2016"
+        }
+      }
+    };
+    var failure = Promise.reject();
+    sinon.stub(Report, 'create').returns(failure)
+    controller.create(mock.request, mock.response, mock.next);
+
+    failure.should.be.rejected.then(function () {
+        assert(mock.response.send.calledWith(500), 'response.send was never called')
+        assert(mock.next.calledOnce, 'next was never called')
+        Report.create.restore()
     }).should.notify(done)
   })
 })
