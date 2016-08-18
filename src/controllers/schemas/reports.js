@@ -3,10 +3,15 @@ export default {
     type: 'object',
     properties: {
       geolocation: {
-        type: 'array',
-        items: {
-          type: 'number'
-        }
+        type: 'object',
+        properties:{
+          latitude: {
+            type: 'number'
+          },
+          longitude:{
+            type: 'number'
+          },
+        },
       },
       category: {
         type: 'string'

@@ -5,7 +5,7 @@ import mongoose from '../libs/mongoose';
 // MongoDB geospatial default unit is meters
 const GEOSPATIAL_MAX_DISTANCE = 10;
 
-let ReportSchema = new mongoose.Schema({
+let ReportSchema = mongoose.Schema({
   geolocation: {
     type: [Number],
     index: '2d',

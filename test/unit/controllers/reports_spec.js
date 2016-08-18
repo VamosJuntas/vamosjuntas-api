@@ -1,87 +1,63 @@
-import HttpStatus from 'http-status-codes';
-import sinon from 'sinon';
-import Report from '../../../src/models/report';
-import controller from '../../../src/controllers/reports';
+import sinon from 'sinon'
+import chai, { assert } from 'chai'
+import chaiAsPromised from 'chai-as-promised'
 
-describe('controllers:reports', () => {
-  function createReqParams() {
-    return {
-      geolocation: [-30.057389, -51.174544],
-      category: 'lorem',
-      date: '07/02/2016'
-    };
-  }
+import controller from '../../../src/controllers/reports'
+import Report from '../../../src/models/report'
 
-  function createReportDocument() {
-    return {
-      _id: '123lorem',
-      __v: 0,
-      geolocation: [-30.057389, -51.174544],
-      category: 'lorem',
-      date: '07/02/2016',
-      createdAt: '2016-07-09T00:28:43.306Z',
-      updatedAt: '2016-07-09T00:28:43.306Z'
-    };
-  }
+chai.use(chaiAsPromised)
+chai.should()
 
-  describe('.create', () => {
-    context('valid', () => {
-      let req, res, report, saveAsyncPromise;
-
-      beforeEach(() => {
-        report = createReportDocument();
-
-        saveAsyncPromise = Promise.resolve(report);
-        sinon.stub(Report.prototype, 'saveAsync').returns(saveAsyncPromise);
-
-        req = {
-          params: createReqParams()
+describe('Reports Controller', function() {
+  it('should create a new Report and return success', function(done) {
+    var mock = {
+      next: sinon.spy(),
+      response: { send: sinon.spy() },
+      request: {
+        params: {
+          geolocation: {
+            latitude: 10,
+            longitude: 20
+          },
+          category: "Roubo",
+          date: "10/10/2016"
         }
+      }
+    };
+    var success = Promise.resolve();
+    sinon.stub(Report, 'create').returns(success)
+    controller.create(mock.request, mock.response, mock.next);
 
-        res = {
-          send: sinon.spy()
+    success.should.be.fulfilled.then(function () {
+        assert(mock.response.send.calledWith(201), 'response.send was never called')
+        assert(mock.next.calledOnce, 'next was never called')
+        Report.create.restore()
+    }).should.notify(done)
+  })
+
+  it('should return failure when can not create a new report', function(done) {
+    var mock = {
+      next: sinon.spy(),
+      response: { send: sinon.spy() },
+      request: {
+        params: {
+          geolocation: {
+            latitude: 10,
+            longitude: 20
+          },
+          category: "Roubo",
+          date: "10/10/2016"
         }
-      });
+      }
+    };
+    var failure = Promise.reject();
+    sinon.stub(Report, 'create').returns(failure)
+    controller.create(mock.request, mock.response, mock.next);
 
-      afterEach(() => {
-        Report.prototype.saveAsync.restore();
-      });
-
-      it('should call res.send with 201 and report args', () => {
-        controller.create(req, res);
-        return expect(saveAsyncPromise).to.be.fulfilled.then(() => {
-          expect(res.send).to.be.calledWith(HttpStatus.CREATED, report);
-        });
-      });
-    });
-
-    context('invalid', () => {
-      let req, next, mongooseError, saveAsyncPromise;
-
-      beforeEach(() => {
-        mongooseError = new Error('validation error');
-        saveAsyncPromise = Promise.reject(mongooseError);
-        sinon.stub(Report.prototype, 'saveAsync').returns(saveAsyncPromise);
-
-        let params = createReqParams();
-        delete params.geolocation;
-        req = {
-          params: params
-        };
-
-        next = sinon.spy();
-      });
-
-      afterEach(() => {
-        Report.prototype.saveAsync.restore();
-      });
-
-      it('should call next with error data if mongoose validation fails', () => {
-        controller.create(req, {}, next);
-        return expect(saveAsyncPromise).to.be.rejected.then(() => {
-          expect(next).to.be.calledWith(mongooseError);
-        });
-      });
-    });
-  });
-});
+    failure.should.be.rejected.then(function () {
+        assert(mock.response.send.calledWith(500), 'response.send was never called')
+        assert(mock.next.calledOnce, 'next was never called')
+        Report.create.restore()
+    }).should.notify(done)
+  })
+})

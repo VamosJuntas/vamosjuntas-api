@@ -46,6 +46,12 @@ brew services stop mongodb
 brew services restart mongodb
 ```
 
+## Run App Locally
+
+```
+node bin/www
+```
+
 ## Tests
 
 Test script will run the folling commands: **lint > unit > integration**

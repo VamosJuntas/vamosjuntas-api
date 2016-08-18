@@ -38,7 +38,10 @@ describe('POST /reports', () => {
       request(app)
         .post('/reports')
         .send({
-          geolocation: [1, 2],
+          geolocation: {
+            latitude: 1,
+            longitude: 2
+          },
           category: 'lorem',
           date: '06/06/2016'
         })

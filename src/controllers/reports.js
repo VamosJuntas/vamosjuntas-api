@@ -1,16 +1,17 @@
-import HttpStatus from 'http-status-codes';
-import Report from '../models/report';
+import Report from './../models/report';
 
-function create(req, res, next) {
-  let report = new Report(req.body);
-  report.saveAsync()
-    .then((document) => {
-      return res.send(HttpStatus.CREATED, document);
-    })
-    .catch((err) => {
-      return next(err);
-    });
+function create(request, response, next) {
+  var params = {
+    geolocation: [request.params.geolocation.latitude, request.params.geolocation.longitude],
+    category: request.params.category,
+    date: request.params.date
+  }
+  var report = Report.create(params).then(function() {
+    response.send(201)
+  }).catch(function() {
+    response.send(500)
+  });
+  return next()
 }
 
 export default { create };
-
