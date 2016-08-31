@@ -84,7 +84,7 @@ describe('models:report', () => {
     });
 
     it('should set $near query type', () => {
-      const METER_PER_DEGREES = 0.00008983111749910169;
+      const METER_PER_DEGREES = 0.008983111749910169;
       Report.findByGeolocation([90, 180]);
       expect(Report.find).to.be.calledWith({
         geolocation: {
