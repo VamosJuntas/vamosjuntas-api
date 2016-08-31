@@ -3,7 +3,7 @@ import longitudeValidator from './validators/longitude';
 import mongoose from '../libs/mongoose';
 
 const METER_PER_DEGREES = 111320;
-const GEOSPATIAL_MAX_DISTANCE = 10;
+const GEOSPATIAL_MAX_DISTANCE = 1000;
 
 let ReportSchema = mongoose.Schema({
   geolocation: {
