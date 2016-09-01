@@ -1,17 +1,17 @@
-import app from '../../src/app';
+import app from '../../../src/app';
 
-describe('Health Check', () => {
+describe('GET /_health', () => {
   it('should respond with 200', (done) => {
     request(app)
       .get('/_health')
       .expect(200, done);
   });
 
-  it('should body contains ok text', (done) => {
+  it('should body contains ok', (done) => {
     request(app)
       .get('/_health')
       .expect({
-        online: true
+        ok: true
       }, done);
   });
 });

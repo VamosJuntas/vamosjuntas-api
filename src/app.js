@@ -15,8 +15,10 @@ app.use(restify.queryParser());
 app.use(restify.bodyParser());
 
 app.get('/_health', (req, res) => {
-  return res.send(200, { online: true });
+  return res.send(200, { ok: true });
 });
+
+app.get('/reports/:geolocation', reportsController.show);
 
 app.post(
   '/reports',

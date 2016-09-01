@@ -2,8 +2,8 @@ import latitudeValidator from './validators/latitude';
 import longitudeValidator from './validators/longitude';
 import mongoose from '../libs/mongoose';
 
-// MongoDB geospatial default unit is meters
-const GEOSPATIAL_MAX_DISTANCE = 10;
+const METER_PER_DEGREES = 111320;
+const GEOSPATIAL_MAX_DISTANCE = 1000;
 
 let ReportSchema = mongoose.Schema({
   geolocation: {
@@ -25,12 +25,17 @@ let ReportSchema = mongoose.Schema({
   },
 }, { timestamps: true });
 
+const convertDegreesToMeters = (meters) => {
+  return meters / METER_PER_DEGREES;
+};
+
 ReportSchema.statics = {
   findByGeolocation(geolocation, maxDistance) {
+    const MAX_DISTANCE = convertDegreesToMeters(maxDistance || GEOSPATIAL_MAX_DISTANCE);
     const QUERY = {
       geolocation: {
         $near: geolocation,
-        $maxDistance: maxDistance || GEOSPATIAL_MAX_DISTANCE
+        $maxDistance: MAX_DISTANCE
       }
     };
 
