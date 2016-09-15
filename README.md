@@ -92,7 +92,7 @@ docker-machine env
 eval $(docker-machine env)
 ```
 
-###  Build images
+### Build images
 
 ```
 docker-compose -f docker-compose-dev.yml build db
@@ -104,13 +104,15 @@ OR
 docker-compose -f docker-compose-dev.yml build web
 ```
 
-### Start API
+### Running API
 
 ```
-docker-compose -f docker-compose-dev.yml up web
+docker-compose -f docker-compose-dev.yml run web
 ```
 
-It will expose the 3000 port in the docker machine. You can check it by typing `docker ps`.
+The application will be running at port 3000 of your docker machine IP address. To check your machine IP `docker-machine ip default`.
+
+If you're using docker beta **(no docker machine is required)** at Mac OSX it will be running at **0.0.0.0**.
 
 ### Tests
 

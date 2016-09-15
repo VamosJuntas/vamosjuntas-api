@@ -26,6 +26,19 @@ services:
       - VAMOSJUNTAS_DATABASE_URL=mongodb://db/vamosjuntas
     command: [ npm, test ]
 
+  web:
+    build:
+      dockerfile: infrastructure/docker/Dockerfile_nodejs_dev
+      context: .
+    volumes:
+      - ./:/usr/app
+    links:
+      - db
+    environment:
+      - VAMOSJUNTAS_DATABASE_URL=mongodb://db/vamosjuntas
+    ports:
+      - "3000:3000"
+
   db:
     build:
       dockerfile: infrastructure/docker/Dockerfile_mongodb_dev
