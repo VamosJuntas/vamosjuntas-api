@@ -2,6 +2,9 @@ export default {
   create: {
     type: 'object',
     properties: {
+      address: {
+        type: 'string'
+      },
       geolocation: {
         type: 'object',
         properties:{
@@ -20,6 +23,6 @@ export default {
         type: 'string'
       }
     },
-    required: ['geolocation', 'category', 'date']
+    required: ['address', 'geolocation', 'category', 'date']
   }
 };

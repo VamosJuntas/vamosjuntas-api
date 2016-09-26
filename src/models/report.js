@@ -15,6 +15,10 @@ let ReportSchema = mongoose.Schema({
       return latitudeValidator(point[0]) && longitudeValidator([point[1]]);
     }
   },
+  address: {
+    type: String,
+    required: true
+  },
   category: {
     type: String,
     required: true

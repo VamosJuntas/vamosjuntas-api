@@ -15,6 +15,7 @@ describe('Reports Controller', function() {
       response: { send: sinon.spy() },
       request: {
         params: {
+          address: "Avenida Ipiranga, 2265",
           geolocation: {
             latitude: 10,
             longitude: 20

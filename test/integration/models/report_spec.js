@@ -3,6 +3,7 @@ import Report from '../../../src/models/report';
 describe('models:report', () => {
   before((done) => {
     const REPORT_FAR_AWAY = {
+      address: 'Avenida Ipiranga, 500',
       geolocation: [-30.0613321,-51.163035],
       category: 'Hospital',
       date: '07/07/2016'
@@ -10,11 +11,13 @@ describe('models:report', () => {
 
     const REPORTS = [
       {
+        address: 'Avenida Ipiranga, 600',
         geolocation: [-30.0599919,-51.1736128],
         category: 'Biblioteca',
         date: '07/07/2016'
       },
       {
+        address: 'Avenida Ipiranga, 700',
         geolocation: [-30.0598603,-51.1743538],
         category: 'Marista',
         date: '07/07/2016'

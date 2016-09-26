@@ -31,6 +31,7 @@ describe('/reports', () => {
         request(app)
           .post('/reports')
           .send({
+            address: 'Avenida Ipiranga, 201',
             category: 'lorem',
             date: '06/06/2016'
           })
@@ -41,7 +42,11 @@ describe('/reports', () => {
         request(app)
           .post('/reports')
           .send({
-            geolocation: [1, 2],
+            address: 'Avenida Ipiranga, 201',
+            geolocation: {
+              latitude: 1,
+              longitude: 2
+            },
             date: '06/06/2016'
           })
           .expect(400, done);
@@ -51,8 +56,26 @@ describe('/reports', () => {
         request(app)
           .post('/reports')
           .send({
-            geolocation: [1, 2],
+            address: 'Avenida Ipiranga, 201',
+            geolocation: {
+              latitude: 1,
+              longitude: 2
+            },
             category: 'lorem'
+          })
+          .expect(400, done);
+      });
+
+      it('should respond with address is missing', (done) => {
+        request(app)
+          .post('/reports')
+          .send({
+            geolocation: {
+              latitude: 1,
+              longitude: 2
+            },
+            category: 'lorem',
+            date: '06/06/2016'
           })
           .expect(400, done);
       });
@@ -63,6 +86,7 @@ describe('/reports', () => {
         request(app)
           .post('/reports')
           .send({
+            address: 'Avenida Ipiranga, 201',
             geolocation: {
               latitude: 1,
               longitude: 2

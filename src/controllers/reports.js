@@ -15,6 +15,7 @@ function show(req, res, next) {
 
 function create(request, response, next) {
   var params = {
+    address: request.params.address,
     geolocation: [request.params.geolocation.latitude, request.params.geolocation.longitude],
     category: request.params.category,
     date: request.params.date
