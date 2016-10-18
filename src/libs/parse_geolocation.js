@@ -1,4 +1,5 @@
-export default function(value) {
+export default function parseGeolocation(value) {
+
   if (!value) {
     return undefined;
   }
@@ -7,18 +8,13 @@ export default function(value) {
     return undefined;
   }
 
-  const point = value.split(',');
+  const points = value
+                      .split(',')
+                      .filter(p => p !== '')
+                      .map(p => p.trim())
+                      .map(Number)
+                      .filter(p => !isNaN(p));
 
-  if (point.length < 2) {
-    return undefined;
-  }
+  return points.length !== 2 ? undefined : points;
 
-  if (point[0] === '' || point[1] === '') {
-    return undefined;
-  }
-
-  const latitude = Number(point[0].trim());
-  const longitude = Number(point[1].trim());
-
-  return [latitude, longitude];
-}
+};
