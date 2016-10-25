@@ -25,7 +25,16 @@ describe('libs:parse_geolocation', () => {
     expect(parser()).to.be.an('undefined');
   });
 
-  it("should return undefined if a string isn't passed", () => {
-    expect(parser()).to.be.an('undefined');
+  it('should return undefined if a string isn\'t passed', () => {
+    expect(parser(123)).to.be.an('undefined');
   });
+
+  it('should return undefined if string contains no number values', () => {
+    expect(parser('whatever')).to.be.undefined;
+  });
+
+  it('should return undefined if string contains invalid values', () => {
+    expect(parser('Something,Something')).to.be.undefined;
+  });
+
 });

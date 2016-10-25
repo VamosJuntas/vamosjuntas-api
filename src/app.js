@@ -4,11 +4,13 @@ import mongoose from './libs/mongoose';
 import requestValidator from './middlewares/request_validator';
 import reportsController from './controllers/reports';
 import reportSchemas from './controllers/schemas/reports';
+import logger from './libs/request_logger';
 
 dbConnect();
 
 let app = restify.createServer({
-  name: 'VamosJuntas'
+  name: 'VamosJuntas',
+  log: logger
 });
 
 app.use(restify.queryParser());
@@ -26,6 +28,12 @@ app.post(
   reportsController.create
 );
 
+app.pre((req, res, next) => {
+  req.log.info({ req }, 'START');
+  req.log.info({ res }, 'END');
+  return next();
+});
+
 function dbConnect() {
   const DB = `${config.mongoose.db}`;
 
@@ -37,4 +45,3 @@ function dbConnect() {
 }
 
 export default app;
-

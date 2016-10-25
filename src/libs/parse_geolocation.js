@@ -1,24 +1,13 @@
-export default function(value) {
-  if (!value) {
-    return undefined;
-  }
+export default function parseGeolocation(value) {
 
-  if (typeof value !== 'string') {
-    return undefined;
-  }
+  const points = (typeof value !== 'string')
+  ? []
+  : value
+          .split(',')
+          .filter(p => p !== '')
+          .map(p => Number(p.trim()))
+          .filter(p => !isNaN(p));
 
-  const point = value.split(',');
+  return points.length !== 2 ? undefined : points;
 
-  if (point.length < 2) {
-    return undefined;
-  }
-
-  if (point[0] === '' || point[1] === '') {
-    return undefined;
-  }
-
-  const latitude = Number(point[0].trim());
-  const longitude = Number(point[1].trim());
-
-  return [latitude, longitude];
-}
+};
