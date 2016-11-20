@@ -110,7 +110,7 @@ docker-compose -f docker-compose-dev.yml build web
 docker-compose -f docker-compose-dev.yml up web
 ```
 
-It will expose the 3000 port in the docker machine. You can check it by typing `docker ps`.
+It will expose the 3001 port in the docker machine. You can check it by typing `docker ps`.
 
 ### Tests
 
