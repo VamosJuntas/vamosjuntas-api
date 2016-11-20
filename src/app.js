@@ -5,6 +5,7 @@ import requestValidator from './middlewares/request_validator';
 import reportsController from './controllers/reports';
 import reportSchemas from './controllers/schemas/reports';
 import logger from './libs/request_logger';
+import cors from 'cors';
 
 dbConnect();
 
@@ -15,6 +16,8 @@ let app = restify.createServer({
 
 app.use(restify.queryParser());
 app.use(restify.bodyParser());
+
+app.use(cors());
 
 app.get('/_health', (req, res) => {
   return res.send(200, { ok: true });
