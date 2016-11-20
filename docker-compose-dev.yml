@@ -10,7 +10,7 @@ services:
     links:
       - db
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - VAMOSJUNTAS_DATABASE_URL=mongodb://db/vamosjuntas
 
