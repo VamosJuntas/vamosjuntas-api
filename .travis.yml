@@ -6,6 +6,7 @@ install:
 script:
 - npm run lint
 - npm run unit-test
+- docker-compose -f docker-compose.yml run test npm run integration-test
 deploy:
   provider: heroku
   api_key:
